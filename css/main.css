@@ -23,6 +23,7 @@ body {
 
 a {
     cursor: pointer;
+    color: #FFFFFF;
     text-decoration: none;
 }
 a:visited {
