@@ -51,7 +51,7 @@ a:visited {
     display: block;
     width: 330px;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .snItem {
@@ -113,13 +113,16 @@ footer {
     }
 
     footer {
-        display: block;
-        position: fixed;
-        text-align: center;
-        padding-top: 10px;
-        padding-bottom: 10px;
         width: 100%;
         left: 0;
-        bottom: 0;
+    }
+}
+
+@media (max-height: 600px) {
+    footer {
+        position: static;
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
     }
 }
