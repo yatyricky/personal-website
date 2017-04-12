@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'GoogleCoda';
+    src: url('fonts/Coda-Regular.woff') format('woff'), 
+         url('fonts/Coda-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'GoogleCoda', Arial, Helvetica, sans-serif;
+    background-image:       url(imgs/background.jpg);
+    background-size:        cover;                      /* <------ */
+    background-repeat:      no-repeat;
+    background-attachment:  fixed;
+    background-color:       #999999;
+    color: #FFFFFF;
+    margin: 0 auto;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+a:visited {
+    color: #FFFFFF;
+}
+
+#profile {
+    display: block;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+#avatar {
+    display: block;
+    height: 160px;
+    width: 160px;
+    margin: 0 auto;
+
+    background-image:       url(imgs/avatar.png);
+    background-size:        cover;
+    background-repeat:      no-repeat;
+}
+
+#social {
+    display: block;
+    width: 330px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.snItem {
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-top: 5px;
+    height: 40px;
+    width: 100px;
+    padding: 5px;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgba(255,255,255,0.2);
+    transition: all 0.15s;
+}
+.snItem:hover {
+    box-shadow: 0 5px 10px rgba(255,255,255,0.25), 0 2px 2px rgba(255,255,255,0.22);
+}
+
+#objects {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.artifact {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.5em;
+    margin-top: 10px;
+    height: 80px;
+    line-height: 80px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all 0.2s;
+}
+.artifact:hover {
+    text-shadow: 0 5px 10px rgba(255,255,255,0.25), 0 2px 2px rgba(255,255,255,0.22);
+}
+
+footer {
+    display: block;
+    position: fixed;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50%;
+    left: 25%;
+    bottom: 0;
+}
+
+@media (max-width: 650px) {
+    #profile {
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    footer {
+        display: block;
+        position: fixed;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
