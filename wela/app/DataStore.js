@@ -23,6 +23,10 @@ export default class DataStore {
         this.updateCombatListCallback = updateCombatListCallback;
     }
 
+    setActiveLog(id) {
+        this.activeLog = id;
+    }
+
     parseDone() {
         // sort all logs
         const keys = Object.keys(this.originalData);
@@ -33,8 +37,10 @@ export default class DataStore {
         // update combat list
         const {combat} = this.originalData;
         this.combatList = [];
+        this.activeLog = -1;
         for (let i = 0, len = combat.length; i < len; i += 2) {
             this.combatList.push({
+                "id": i,
                 "name": "",
                 "start": combat[i][0],
                 "end": (i + 1 < len) ? combat[i+1][0] : 9999

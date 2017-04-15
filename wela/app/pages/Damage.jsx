@@ -5,11 +5,15 @@ class Damage extends React.Component {
 
     constructor() {
         super();
+        this.dataStore = new DataStore();
     }
 
     render() {
         return (
-            <h1 className="page-header">伤害统计</h1>
+            <div>
+                <h1 className="page-header">伤害统计</h1>
+                <div>Current Log: {this.dataStore.activeLog}</div>
+            </div>
         );
     }
 
