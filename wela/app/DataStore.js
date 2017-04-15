@@ -16,6 +16,7 @@ export default class DataStore {
             "mana": [],
             "combat": []
         };
+        this.updateDamageCallback = null;
         return instance;
     }
 
@@ -23,8 +24,37 @@ export default class DataStore {
         this.updateCombatListCallback = updateCombatListCallback;
     }
 
+    registerUpdateDamage(updateDamageCallback) {
+        this.updateDamageCallback = updateDamageCallback;
+    }
+
     setActiveLog(id) {
         this.activeLog = id;
+
+        if (this.updateDamageCallback !== null) {
+            this.updateDamageCallback.call();
+        }
+    }
+
+    fetchLog(type) {
+        let findCombat = null;
+        for (var i = this.combatList.length - 1; i >= 0; i--) {
+            if (this.combatList[i].id === this.activeLog) {
+                findCombat = this.combatList[i];
+            }
+        }
+        if (findCombat !== null) {
+            let log = this.originalData[type];
+            let l = 0, r = log.length;
+            let m = Math.floor(r / 2.0);
+            // while (l <= r) {
+
+            // }
+            console.log(log);
+            return [];
+        } else {
+            return [];
+        }
     }
 
     parseDone() {
