@@ -1,0 +1,147 @@
+body {
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	background-color: #EEEEEE;
+	margin: 0;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                              not supported by any browser */
+}
+ul {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+li {
+	list-style: none;
+	margin: 5px;
+}
+.title {
+	padding: 0.2em;
+	margin: 10px;
+	border-bottom: 3px solid #27ae60;
+}
+.logo {
+	height: 45px;
+}
+.caption {
+	color: #27ae60;
+	font-size: 2em;
+	text-align: center;
+}
+.rules {
+	width: 520px;
+	margin: 0 auto;
+	overflow: hidden;
+	-webkit-box-shadow: inset 0 -12px 12px -12px #222222;
+	   -moz-box-shadow: inset 0 -12px 12px -12px #222222;
+            box-shadow: inset 0 -12px 12px -12px #222222;
+}
+.enrolNameWrapper {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+.enrolName {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	display: block;
+    margin : 0 auto;
+	font-size: 1.5em;
+	text-align: center;
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-style: oblique;
+	padding: 0.2em;
+	width: 200px;
+	border: 1px solid #27ae60;
+	color: #27ae60;
+}
+input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+input:focus {
+	outline:none;
+}
+.enrol {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	font-family: Georgia, Times, 'Times New Roman', serif;
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+	background-color: #27ae60;
+	color: #FFFFFF;
+	padding: 0.2em;
+	font-size: 1.5em;
+}
+.enrol:hover {
+	cursor: pointer;
+}
+.enrol:active {
+	background-color: #2ecc71;
+}
+
+#page2 {
+	display: none;
+	width: 520px;
+	margin: 0 auto;
+}
+td {
+	padding: 3px;
+	width: 20%;
+}
+
+.tabs {
+	display: inline-block;
+	color: #27ae60;
+	font-size: 2em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.dashPane {
+	margin: 0.7em;
+}
+
+.allinleft {
+	width: 20%;
+}
+
+.sidepoolres {
+	color: #27ae60;
+	font-size: 1.2em;
+	font-style: oblique;
+}
+
+.allinInput {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-style: oblique;
+	padding: 0.1em;
+	border: 1px solid #27ae60;
+	color: #27ae60;
+	font-size: 1.2em;
+	width: 100%;
+}
+
+@media all and (min-width: 320px) and (max-width: 780px) {
+	.caption {
+		font-size: 2em;
+	}
+	.rules {
+		width: 90%;
+	}
+	#page2 {
+		width: 90%;
+	}
+}
