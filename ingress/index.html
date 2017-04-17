@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="stylesheets/ingress.css" />
+<script src="javascripts/jquery-2.2.3.min.js"></script>
+
+<!-- favicons -->
+<link rel="apple-touch-icon" sizes="57x57" href="../favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+<link rel="manifest" href="../favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<title>Ingress Maths</title>
+</head>
+
+<body>
+<div id="loading" class="centre-wrapper">
+	<div class="loading-dots">
+		<div id="loading-dot-0" class="loading-dot"></div>
+		<div id="loading-dot-1" class="loading-dot"></div>
+		<div id="loading-dot-2" class="loading-dot"></div>
+		<div id="loading-dot-3" class="loading-dot"></div>
+	</div>
+	<div id="loading-num">0%</div>
+</div>
+
+<div id="all-contents" class="centre-wrapper">
+<div class="resonators-pane">
+	<div class="resonators">
+		<div id="res-0" class="resonator"></div>
+		<div id="res-1" class="resonator"></div>
+		<div id="res-2" class="resonator"></div>
+		<div id="res-3" class="resonator"></div>
+		<div id="res-4" class="resonator"></div>
+		<div id="res-5" class="resonator"></div>
+		<div id="res-6" class="resonator"></div>
+		<div id="res-7" class="resonator"></div>
+	</div>
+	<div class="select-resonator">
+		<div class="select-res-bg"><div id="select-res-0" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-1" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-2" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-3" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-4" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-5" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-6" class="select-res-item"></div></div>
+		<div class="select-res-bg"><div id="select-res-7" class="select-res-item"></div></div>
+	</div>
+	<div id="reset-resonators" class="button">Reset</div>
+</div>
+<div class="mods-pane">
+	<div class="mod-slots">
+		<div id="mod-0" class="mod">
+			<div id="mod-value-0" class="mod-value"></div>
+			<div id="mod-img-0" class="deployed-mod"></div>
+		</div>
+		<div id="mod-1" class="mod">
+			<div id="mod-value-1" class="mod-value"></div>
+			<div id="mod-img-1" class="deployed-mod"></div>
+		</div>
+		<div id="mod-2" class="mod">
+			<div id="mod-value-2" class="mod-value"></div>
+			<div id="mod-img-2" class="deployed-mod"></div>
+		</div>
+		<div id="mod-3" class="mod">
+			<div id="mod-value-3" class="mod-value"></div>
+			<div id="mod-img-3" class="deployed-mod"></div>
+		</div>
+	</div>
+	<div id="reset-mods" class="button">Reset</div>
+	<div class="mod-slots">
+		<div class="select-mod-bg"><div id="select-mod-la-0" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-la-1" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-la-2" class="select-mod-item"></div></div>
+	</div>
+	<div class="mod-slots">
+		<div class="select-mod-bg"><div id="select-mod-hs-0" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-hs-1" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-hs-2" class="select-mod-item"></div></div>
+	</div>
+	<div class="mod-slots">
+		<div class="select-mod-bg"><div id="select-mod-mh-0" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-mh-1" class="select-mod-item"></div></div>
+		<div class="select-mod-bg"><div id="select-mod-mh-2" class="select-mod-item"></div></div>
+	</div>
+</div>
+<div class="result-pane">
+	<div class="result-row">
+		<span class="res-label">Level :</span>
+		<span class="res-value" id="res-level"></span>
+	</div>
+	<div class="result-row">
+		<span class="res-label">Range :</span>
+		<span class="res-value" id="res-range"></span>
+	</div>
+	<div class="result-row">
+		<span class="res-label">CD :</span>
+		<span class="res-value" id="res-cd"></span>
+	</div>
+	<div class="result-row">
+		<span class="res-label">Hacks :</span>
+		<span class="res-value" id="res-hacks"></span>
+	</div>
+	<div class="result-row">
+		<span class="res-label">Burn-out Time :</span>
+		<span class="res-value" id="res-burn"></span>
+	</div>
+</div>
+
+<div class="credits">Ingress Maths: calculates portal link range, cooldown and hacks based on Resonators, Link Amps, Heat Sinks and Multi-hacks deployed on a portal.</div>
+<div class="credits">Favicon: <a href="https://github.com/stephanie-walter/ingress-resistance-badge">https://github.com/stephanie-walter/ingress-resistance-badge</a></div>
+<div class="credits">Portal Range Equation: <a href="http://decodeingress.me/2012/11/18/ingress-portal-levels-and-link-range/">http://decodeingress.me/2012/11/18/ingress-portal-levels-and-link-range/</a></div>
+<div class="credits">Link Amp Equation: <a href="http://decodeingress.me/ingress-manual/ingress-items/portal-mods/link-amplifier/">http://decodeingress.me/ingress-manual/ingress-items/portal-mods/link-amplifier/</a></div>
+<div class="credits">Heat Sink Equation: <a href="http://decodeingress.me/ingress-manual/ingress-items/portal-mods/heat-sink/">http://decodeingress.me/ingress-manual/ingress-items/portal-mods/heat-sink/</a></div>
+<div class="credits">Multi-hack Equation: <a href="http://decodeingress.me/ingress-manual/ingress-items/portal-mods/multi-hack/">http://decodeingress.me/ingress-manual/ingress-items/portal-mods/multi-hack/</a></div>
+<div class="credits">UX Suggestion: <span class="resistance">@Doveccl</span></div>
+<div class="credits">Nefinity (<span class="resistance">@Nefinite</span>) toolkit hosted on GitHub.</div>
+</div>
+
+<script type="text/javascript">
+// preload resources
+var img_to_load = ['./images/bg-item-empty.png', './images/bg-item-selected.png', './images/bg-mod.png', './images/bg-resonator.png', './images/bg-sel-resonator.png', './images/hs-1.png', './images/hs-2.png', './images/hs-3.png', './images/L1-Resonator.png', './images/L2-Resonator.png', './images/L3-Resonator.png', './images/L4-Resonator.png', './images/L5-Resonator.png', './images/L6-Resonator.png', './images/L7-Resonator.png', './images/L8-Resonator.png', './images/la-1.png', './images/la-2.png', './images/la-3.png', './images/mh-1.png', './images/mh-2.png', './images/mh-3.png'];
+var loaded_images = 0;
+
+for (var i=0; i<img_to_load.length; i++) {
+    var img = document.createElement('img');
+    img.src = img_to_load[i];
+    img.style.display = 'none'; // don't display preloaded images
+    img.onload = function () {
+        loaded_images ++;
+        if (loaded_images == img_to_load.length) {
+        	$("#loading").hide();
+        	$("#loading").remove();
+            $("#all-contents").show();
+        } else {
+            $("#loading-num").html((100*loaded_images/img_to_load.length).toFixed(2) + '%');
+        }
+    }
+    document.body.appendChild(img);
+}
+// end preload
+
+var sortNumber = function(a, b) {
+    return a - b;
+}
+
+var wrapNumber = function(a) {
+	return a < 10 ? "0" + a : a;
+}
+// localStorage
+var update = function() {
+	var level = 0;
+	for (var i = 0; i < 8; i++) {
+		var resLvl = $("#res-"+i).text();
+		if (resLvl != "") {
+			level += parseFloat(resLvl);
+		}
+	}
+	level = level / 8;
+	level = level < 1 ? 1 : level;
+
+	var las = [];
+	var hss = [];
+	var mhs = [];
+	for (var i = 0; i < 4; i++) {
+		if ($("#mod-value-"+i).text() != "") {
+			var tokens = $("#mod-value-"+i).text().split("-");
+			
+			if (tokens[0].localeCompare("la") == 0) {
+				switch (parseInt(tokens[1])) {
+					case 1:
+						las.push(2);
+						break;
+					case 2:
+						las.push(5);
+						break;
+					case 3:
+						las.push(7);
+						break;
+					default:
+						las.push(0);
+						break;
+				}
+			} else {
+				las.push(0);
+			}
+			
+			if (tokens[0].localeCompare("hs") == 0) {
+				switch (parseInt(tokens[1])) {
+					case 1:
+						hss.push(0.2);
+						break;
+					case 2:
+						hss.push(0.5);
+						break;
+					case 3:
+						hss.push(0.7);
+						break;
+					default:
+						hss.push(0);
+						break;
+				}
+			} else {
+				hss.push(0);
+			}
+			
+			if (tokens[0].localeCompare("mh") == 0) {
+				switch (parseInt(tokens[1])) {
+					case 1:
+						mhs.push(4);
+						break;
+					case 2:
+						mhs.push(8);
+						break;
+					case 3:
+						mhs.push(12);
+						break;
+					default:
+						mhs.push(0);
+						break;
+				}
+			} else {
+				mhs.push(0);
+			}
+		} else {
+			las.push(0);
+			hss.push(0);
+			mhs.push(0);
+		}
+	}
+	las.sort(sortNumber);
+	var laFactor = las[3] + las[2] * 0.25 + las[1] * 0.125 + las[0] * 0.125;
+	laFactor = laFactor == 0 ? 1 : laFactor;
+	var range = 0.16 * Math.pow(level ,4) * laFactor;
+
+	hss.sort(sortNumber);
+	var cd = (1 - hss[3]) * (1 - hss[2] / 2) * (1 - hss[1] / 2) * (1 - hss[0] / 2) * 300;
+
+	mhs.sort(sortNumber);
+	var hacks = 4 + mhs[3] + mhs[2] / 2 + mhs[1] / 2 + mhs[0] / 2;
+
+	var time = cd * (hacks - 1);
+	var burn = "";
+	if (time >= 3600) {
+		var h = Math.floor(time / 3600.0);
+		burn += wrapNumber(h) + ":";
+		time -= h * 3600;
+	}
+	var m = Math.floor(time / 60.0);
+	burn += wrapNumber(m) + ":";
+	time -= m * 60;
+	burn += wrapNumber(Math.floor(time));
+
+	$("#res-level").html(level);
+	$("#res-range").html(range.toFixed(2) + " km");
+	$("#res-cd").html(cd.toFixed(2) + " s");
+	$("#res-hacks").html(hacks);
+	$("#res-burn").html(burn);
+};
+
+// selected a resonator slot
+var selectedResonatorSlot = -1;
+$(".resonator").click(function() {
+	$(".resonator").css('background-image', "url(./images/bg-resonator.png)");
+	if (selectedResonatorSlot == parseInt($(this).attr('id').split("-")[1])) {
+		selectedResonatorSlot = -1;
+	} else {
+		$(this).css('background-image', "url(./images/bg-sel-resonator.png)");
+		selectedResonatorSlot = parseInt($(this).attr('id').split("-")[1]);
+	}
+	// console.log("selectedResonatorSlot="+selectedResonatorSlot);
+});
+
+$(".select-res-item").click(function() {
+	var slot = selectedResonatorSlot;
+	if (slot < 0) {
+		for (var i = 0; i < 8; i++) {
+			if ($("#res-"+i).text() == "") {
+				slot = i;
+				i = 8;
+			}
+		}
+	}
+
+	if (slot >= 0) {
+		var deploy = parseInt($(this).attr('id').split("-")[2]);
+		// console.log("Deploy="+deploy);
+		$("#res-"+slot).html(deploy+1);
+		$("#res-"+slot).attr('class', "resonator lv-"+(deploy+1));
+		update();
+	}
+});
+
+// selected a mod slot
+var selectedModSlot = -1;
+$(".mod").click(function() {
+	$(".mod").css('background-image', "url(./images/bg-item-empty.png)");
+	if (selectedModSlot == parseInt($(this).attr('id').split("-")[1])) {
+		selectedModSlot = -1;
+	} else {
+		$(this).css('background-image', "url(./images/bg-item-selected.png)");
+		selectedModSlot = parseInt($(this).attr('id').split("-")[1]);
+	}
+});
+
+// deploy a mod
+var updateModImage = function() {
+	for (var i = 0; i < 4; i++) {
+		if ($("#mod-value-"+i).text() == "") {
+			$("#mod-img-"+i).css('background-image', '');
+		} else {
+			$("#mod-img-"+i).css('background-image', 'url(./images/'+$("#mod-value-"+i).text()+".png)");
+		}
+		$("#mod-img-"+i).css('background-size', '100%');
+	}
+};
+
+$(".select-mod-item").click(function() {
+	var slot = selectedModSlot;
+	if (slot < 0) {
+		for (var i = 0; i < 4; i++) {
+			if ($("#mod-value-"+i).text() == "") {
+				slot = i;
+				i = 4;
+			}
+		}
+	}
+
+	if (slot >= 0) {
+		var deploy = $(this).attr('id').split("-");
+		$("#mod-value-"+slot).html(deploy[2]+'-'+(parseInt(deploy[3])+1));
+		updateModImage();
+		update();
+	}
+});
+
+// remove item
+$("#remove-item").click(function() {
+	if (selectedResonatorSlot >= 0) {
+		$("#res-"+selectedResonatorSlot).html("");
+	}
+	if (selectedModSlot >= 0) {
+		$("#mod-value-"+selectedModSlot).html("");
+		updateModImage();
+	}
+	update();
+});
+
+// reset resonators 
+$("#reset-resonators").click(function() {
+	selectedResonatorSlot = -1;
+	$(".resonator").css('background-image', "url(./images/bg-resonator.png)");
+	$(".resonator").html("");
+
+	update();
+});
+
+// reset mods 
+$("#reset-mods").click(function() {
+	selectedModSlot = -1;
+	$(".mod").css('background-image', "url(./images/bg-item-empty.png)");
+	$(".mod-value").html("");
+	updateModImage();
+
+	update();
+});
+
+update();
+</script>
+
+</body>
+</html>
