@@ -6,12 +6,6 @@ This is my personal website, hosted on [https://nefti.me/](https://nefti.me/).
 
 ## Ingress Calculator
 
+[https://nefti.me/ingress/](https://nefti.me/ingress/)
+
 Calculates HS/MH/LA.
-
-## Pot Calculator
-
-Calculates pot and side pots.
-
-## Custom Care
-
-Fast generate receipt.
