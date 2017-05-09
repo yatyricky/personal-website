@@ -126,7 +126,7 @@ footer {
     }
 }
 
-@media (max-height: 600px) {
+@media (max-height: 720px) {
     footer {
         position: static;
         width: 100%;
