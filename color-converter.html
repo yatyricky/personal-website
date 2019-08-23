@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        #output {
+            background-color: #eeeeee;
+            color: #333333;
+        }
+    </style>
+
+    <title>Color Converter</title>
+</head>
+
+<body>
+    <div>Input anything here:</div>
+    <ul id="output">
+        <li id="output-hex-6-hash">#FFCC00</li>
+        <li id="output-hex-8-hash">#FFCC0000</li>
+        <li id="output-hex-6">FFCC00</li>
+        <li id="output-hex-8">FFCC0000</li>
+        <li id="output-rgb-255">255,192,0</li>
+        <li id="output-rgba-255">255,192,0,1</li>
+        <li id="output-rgb-1">1,0.75,0</li>
+        <li id="output-rgba-1">1,0.75,0,0.5</li>
+        <li id="output-hsv">???</li>
+    </ul>
+    <input id="input-any" type="text" onkeyup="inputUpdate()" />
+</body>
+
+<script>
+
+    function safeParseNumber(str) {
+        var ret = parseFloat(str, 10);
+        if (isNaN(ret)) {
+            ret = 0;
+        }
+        return ret;
+    }
+
+    function safeParseHex(str) {
+        var ret = parseInt(str, 16);
+        if (isNaN(ret)) {
+            ret = 0;
+        }
+        return ret;
+    }
+
+    function roundTo(num, places) {
+        var exp = Math.pow(10, places);
+        return Math.round(num * exp) / exp;
+        // return num.toFixed(places);
+    }
+
+    function number2Hex(num) {
+        /**
+         * @type {string}
+         */
+        var ret = num.toString(16);
+        if (ret.length === 0) {
+            ret = "00";
+        } else if (ret.length === 1) {
+            ret = "0" + ret;
+        }
+        return ret;
+    }
+
+    function color2grayScale(color) {
+        return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+    }
+
+    function inputUpdate() {
+        /**
+         * @type {string}
+         */
+        var input = document.getElementById("input-any").value;
+        input = input.trim().toLowerCase().replace(/[ #]/g, "");
+        var result = {
+            r: 0,
+            g: 0,
+            b: 0,
+            a: 0
+        };
+
+        if (input.indexOf(",") !== -1) {
+            var parts = input.split(",");
+            if (parts.length === 3) {
+                parts.push("1");
+            } else if (parts.length === 4) {
+                // all good
+            } else {
+                parts = ["1", "1", "1", "1"];
+            }
+            var hasDecimal = false;
+            for (let i = 0; i < parts.length; i++) {
+                if (parts[i].indexOf(".") !== -1) {
+                    hasDecimal = true;
+                    break;
+                }
+            }
+            var channels = [];
+            for (let i = 0; i < parts.length; i++) {
+                channels.push(safeParseNumber(parts[i]));
+            }
+            if (hasDecimal) {
+                result.r = Math.min(channels[0], 1);
+                result.g = Math.min(channels[1], 1);
+                result.b = Math.min(channels[2], 1);
+                result.a = Math.min(channels[3], 1);
+            } else {
+                result.r = Math.min(channels[0] / 255, 1);
+                result.g = Math.min(channels[1] / 255, 1);
+                result.b = Math.min(channels[2] / 255, 1);
+                result.a = Math.min(channels[3] > 1 ? channels[3] / 255 : channels[3], 1);
+            }
+        } else {
+            if (input.length === 3) {
+                input = input[0] + input[0] + input[1] + input[1] + input[2] + input[2] + "ff";
+            } else if (input.length === 6) {
+                input += "ff";
+            } else if (input.length === 8) {
+                // all good
+            } else {
+                input = "ff00ffff";
+            }
+            var parts = input.match(/.{2}/g);
+            result.r = safeParseHex(parts[0]) / 255;
+            result.g = safeParseHex(parts[1]) / 255;
+            result.b = safeParseHex(parts[2]) / 255;
+            result.a = safeParseHex(parts[3]) / 255;
+        }
+        var rgb255 = {
+            r: Math.round(result.r * 255),
+            g: Math.round(result.g * 255),
+            b: Math.round(result.b * 255),
+            a: Math.round(result.a * 255),
+        };
+        var hex6 = (number2Hex(rgb255.r) + number2Hex(rgb255.g) + number2Hex(rgb255.b)).toUpperCase();
+        var hex8 = hex6 + number2Hex(result.a * 255).toUpperCase();
+        var rgb = rgb255.r + "," + rgb255.g + "," + rgb255.b;
+        var rgb1 = roundTo(result.r, 3) + "," + roundTo(result.g, 3) + "," + roundTo(result.b, 3);
+        var a = roundTo(result.a, 3);
+        document.getElementById("output-hex-6-hash").innerText = "#" + hex6;
+        document.getElementById("output-hex-8-hash").innerText = "#" + hex8;
+        document.getElementById("output-hex-6").innerText = hex6;
+        document.getElementById("output-hex-8").innerText = hex8;
+        document.getElementById("output-rgb-255").innerText = rgb;
+        document.getElementById("output-rgba-255").innerText = rgb + "," + a;
+        document.getElementById("output-rgb-1").innerText = rgb1;
+        document.getElementById("output-rgba-1").innerText = rgb1 + "," + a;
+        var domOutput = document.getElementById("output");
+        domOutput.style.backgroundColor = "#" + hex6;
+        domOutput.style.color = "#" + (color2grayScale(result) < 0.5 ? "FFFFFF" : "000000");
+    }
+
+</script>
+
+</html>
