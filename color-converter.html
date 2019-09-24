@@ -29,6 +29,8 @@
         <li id="output-rgba-255">255,192,0,1</li>
         <li id="output-rgb-1">1,0.75,0</li>
         <li id="output-rgba-1">1,0.75,0,0.5</li>
+        <li id="output-rgb-1-f">1f,0.75f,0f</li>
+        <li id="output-rgba-1-f">1f,0.75f,0f,0.5f</li>
         <li id="output-hsv">???</li>
     </ul>
     <input id="input-any" type="text" onkeyup="inputUpdate()" />
@@ -145,7 +147,9 @@
         var hex8 = hex6 + number2Hex(result.a * 255).toUpperCase();
         var rgb = rgb255.r + "," + rgb255.g + "," + rgb255.b;
         var rgb1 = roundTo(result.r, 3) + "," + roundTo(result.g, 3) + "," + roundTo(result.b, 3);
+        var rgb1f = roundTo(result.r, 3) + "f," + roundTo(result.g, 3) + "f," + roundTo(result.b, 3) + "f";
         var a = roundTo(result.a, 3);
+        var af = a + "f";
         document.getElementById("output-hex-6-hash").innerText = "#" + hex6;
         document.getElementById("output-hex-8-hash").innerText = "#" + hex8;
         document.getElementById("output-hex-6").innerText = hex6;
@@ -154,6 +158,8 @@
         document.getElementById("output-rgba-255").innerText = rgb + "," + a;
         document.getElementById("output-rgb-1").innerText = rgb1;
         document.getElementById("output-rgba-1").innerText = rgb1 + "," + a;
+        document.getElementById("output-rgb-1-f").innerText = rgb1f;
+        document.getElementById("output-rgba-1-f").innerText = rgb1f + "," + af;
         var domOutput = document.getElementById("output");
         domOutput.style.backgroundColor = "#" + hex6;
         domOutput.style.color = "#" + (color2grayScale(result) < 0.5 ? "FFFFFF" : "000000");
